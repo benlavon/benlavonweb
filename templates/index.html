@@ -39,5 +39,16 @@
 
     contact: benlavon at gmail
   </div>
+
+  <div>
+      <h1>blog</h1>
+      <ul>
+          {% for article in articles %}
+            <div>
+              <a href="/{{article.title}}">{{article.published}} - {{article.title}}</a>
+            </div>
+          {% endfor %}
+        </ul>
+  </div>
 </body>
 </html>
