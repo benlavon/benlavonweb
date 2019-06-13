@@ -1,7 +1,13 @@
-from flask import Flask, render_template
-from flask_flatpages import FlatPages
+from flask import Flask, render_template, render_template_string
+from flask_flatpages import FlatPages, pygments_style_defs
+import markdown
+
+def my_renderer(text):
+    prerendered_body = render_template_string(text)
+    return markdown.markdown(prerendered_body, extensions=['codehilite', 'fenced_code'])
 
 app = Flask(__name__)
+app.config['FLATPAGES_HTML_RENDERER'] = my_renderer
 pages = FlatPages(app)
 
 @app.route('/')
@@ -15,7 +21,9 @@ def index():
 @app.route('/<path:path>/')
 def page(path):
     page = pages.get_or_404(path)
-    # flatpage.html is the default if there is no template
     template = page.meta.get('template', 'article.html')
-    # TODO -- see if you can get the page filename from meta
     return render_template(template, page=page)
+
+@app.route('/pygments.css')
+def pygments_css():
+    return pygments_style_defs('xcode'), 200, {'Content-Type': 'text/css'}

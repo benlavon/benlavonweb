@@ -1,54 +1,44 @@
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'base.html' %}
 
-  <title>benjamin lavon</title>
-
-  <link rel="icon" href="{{ url_for('static', filename='minidisc.png') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% block body %}
   <div>
     <h1>benjamin lavon</h1>
     <h3>
       full-stack engineer<br>
-      london, uk 🇬🇧<br>
-      squad engineering lead @ <a href="http://trouva.com">Trouva
+      squad engineering lead @ <a href="http://trouva.com">Trouva</a><br>
+      london, uk 🇬🇧
     </h3>
     <ul>
       <li>
-        <a href="https://github.com/benlavon">github</a>
+      <a href="https://github.com/benlavon">github</a>
       </li>
       <li>
-        <a href="https://linkedin.com/in/benjaminlavon">linkedin</a>
+      <a href="https://linkedin.com/in/benjaminlavon">linkedin</a>
+      </li>
+      <!--
+      <li>
+      <a href="https://www.flickr.com/photos/155377562@N05">photography</a>
+      </li>
+      -->
+      <li>
+      <a href="http://instagram.com/benjaminlavon">instagram</a>
       </li>
       <li>
-        <a href="/media.html">multimedia projects</a>
-      </li>
-      <li>
-        <a href="https://www.flickr.com/photos/155377562@N05">photography</a>
-      </li>
-      <li>
-        <a href="http://instagram.com/benjaminlavon">instagram</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/ben_lavon">twitter</a>
+      <a href="https://twitter.com/ben_lavon">twitter</a>
       </li>
     </ul>
 
-    contact: benlavon at gmail
+  contact: benlavon at gmail
   </div>
 
   <div>
-      <h1>blog</h1>
-      <ul>
-          {% for article in articles %}
-            <div>
-              <a href="/{{article.title}}">{{article.published}} - {{article.title}}</a>
-            </div>
-          {% endfor %}
-        </ul>
+    <h1>blog</h1>
+    <ul>
+      {% for article in articles %}
+        <div>
+          <a href="/{{ article.filename }}">{{ article.published }} - {{ article.title }}</a>
+        </div>
+      {% endfor %}
+    </ul>
   </div>
-</body>
-</html>
+{% endblock %}
