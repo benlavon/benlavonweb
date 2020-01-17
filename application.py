@@ -1,4 +1,4 @@
-from flask import Flask, render_template, render_template_string
+from flask import Flask, render_template, render_template_string, send_from_directory
 from flask_flatpages import FlatPages, pygments_style_defs
 import markdown
 
@@ -17,6 +17,11 @@ def index():
     # Show the 10 most recent articles, most recent first.
     latest = sorted(articles, reverse=True, key=lambda p: p.meta['published'])
     return render_template('index.html', articles=latest[:10])
+
+@app.route('/.well-known/pki-validation/<path:filename>')
+def wellKnownRoute(filename):
+    print(app.root_path)
+    return send_from_directory(app.root_path + '/.well-known/pki-validation/', filename, conditional=True)
 
 @app.route('/<path:path>/')
 def page(path):
