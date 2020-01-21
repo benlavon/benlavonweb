@@ -1,5 +1,7 @@
 from flask import Flask, render_template, render_template_string
 from flask_flatpages import FlatPages, pygments_style_defs
+from flask_talisman import Talisman
+
 import markdown
 
 def my_renderer(text):
@@ -7,6 +9,7 @@ def my_renderer(text):
     return markdown.markdown(prerendered_body, extensions=['codehilite', 'fenced_code'])
 
 app = Flask(__name__)
+Talisman(app)
 app.config['FLATPAGES_HTML_RENDERER'] = my_renderer
 pages = FlatPages(app)
 
