@@ -9,6 +9,7 @@ def my_renderer(text):
     return markdown.markdown(prerendered_body, extensions=['codehilite', 'fenced_code'])
 
 app = Flask(__name__)
+# TODO -- Talisma needs force_https=False to work on local, fix this with some env vars
 Talisman(app)
 app.config['FLATPAGES_HTML_RENDERER'] = my_renderer
 pages = FlatPages(app)

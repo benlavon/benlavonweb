@@ -1,0 +1,26 @@
+title: Testing, testing...
+filename: testing-testing
+published: 2020-06-06
+
+I've decided to put a bit more effort into this thing...
+
+I might even create a more convenient pipeline for getting posts up here. And some proper CSS!
+
+Currently, I'm deploying through Heroku directly from the terminal. [The source code for this blog is hosted here.](https://github.com/benlavon/benlavonweb)
+
+This blog uses a nice little package called [Flask-FlatPages](https://flask-flatpages.readthedocs.io/en/v0.7.1/), which means I don't need to deal with any databases and these posts are simply static Markdown files but getting them up at the moment isn't really conducive to a nice blogging workflow, which is something I need to work on.
+
+This post is mostly a test after getting this app working locally again. I haven't used Python or Flask in around a year now and it took me about an hour to get up and running again.
+
+Below is an arbitrary code block to test if the Markdown code highlighting plugin I've installed is working.
+
+```
+from flask import Flask
+from flask_flatpages import FlatPages
+
+app = Flask(__name__)
+app.config.from_pyfile('mysettings.cfg')
+pages = FlatPages(app)
+```
+
+Bye for now!
